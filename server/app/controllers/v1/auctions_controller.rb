@@ -1,6 +1,7 @@
 class V1::AuctionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :update]
   before_action :find_auction, only: [:show, :destroy, :update]
+  before_action :authorize_user!, only: [:update, :destroy]
 
   def create
     auction = Auction.new auction_params
@@ -37,5 +38,13 @@ class V1::AuctionsController < ApplicationController
 
   def find_auction
     @auction = Auction.find params[:id]
+  end
+
+  def authorize_user!
+    unless can?(:manage, @auction)
+      render(
+        json: { errors: [{ type: "Unauthorized" }] }, status: :unauthorized
+      )
+    end
   end
 end
