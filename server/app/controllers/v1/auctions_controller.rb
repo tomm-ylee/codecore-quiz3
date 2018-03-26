@@ -16,8 +16,17 @@ class V1::AuctionsController < ApplicationController
   end
 
   def index
-    auction = Auction.order(end_date: :ASC)
+    auctions = Auction.order(end_date: :ASC)
     render json: auctions
+  end
+
+  def update
+    @auction.update! auction_params
+    render json: @auction
+  end
+
+  def destroy
+    @auction.destroy
   end
 
   private

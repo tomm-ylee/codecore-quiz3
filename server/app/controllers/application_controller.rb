@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  skip_before_action :verify_authenticity_token
-
   private
 
   def current_user
@@ -12,9 +10,6 @@ class ApplicationController < ActionController::API
       nil
     end
   end
-
-  helper_method :current_user
-
 
   def authenticate_user!
     unless current_user.present?
