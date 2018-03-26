@@ -6,10 +6,10 @@ PASSWORD = 'tester'
 User.create(username: 'Admin', email: 'admin@email.com', password: PASSWORD, admin: true)
 
 12.times do
-  name = "#{Faker::Simpsons.character}-#{rand(1..99)}"
+  name = Faker::Simpsons.character
   User.create(
     username: name,
-    email: "#{name}@email.com",
+    email: "#{name}-#{rand(1..99)}@email.com",
     password: PASSWORD
   )
 end

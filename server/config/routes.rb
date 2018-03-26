@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :tokens, only: [:create, :destroy]
     resources :auctions, only: [:create, :show, :index, :destroy, :update], shallow: true do
-      resources :bid, only: [:create, :destroy]
+      resources :bids, only: [:create, :destroy]
     end
   end
 end
