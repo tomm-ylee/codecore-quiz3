@@ -7,7 +7,8 @@ class AuctionIndexPage extends React.Component {
     super(props);
 
     this.state = {
-      auctions:[]
+      auctions:[],
+      loading: true
     }
 
   }
@@ -18,23 +19,36 @@ class AuctionIndexPage extends React.Component {
   }
 
   render () {
-    return (
-      <main
-        className="AuctionIndexPage"
-        style={{margin: '0 1rem'}}
-      >
-        <h2>Items for Auctions</h2>
-        <ul className="auctionList">
-          {this.state.auctions.map( auction => (
-            <div key={auction.id}>
-              <Link to={`/auctions/${auction.id}`}>
-                {auction.title}
-              </Link>
-            </div>
-          ))}
-        </ul>
-      </main>
-    )
+    const { auctions, loading } = this.state
+
+    if (loading) {
+      return (
+        <main
+          className="AuctionIndexPage"
+          style={{margin: '0 1rem'}}
+        >
+          <p>Loading...⥁</p>
+        </main>
+      )
+    } else {
+      return (
+        <main
+          className="AuctionIndexPage"
+          style={{margin: '0 1rem'}}
+        >
+          <h2>Items for Auctions</h2>
+          <ul className="auctionList">
+            {auctions.map( auction => (
+              <div key={auction.id}>
+                <Link to={`/auctions/${auction.id}`}>
+                  {auction.title}
+                </Link>
+              </div>
+            ))}
+          </ul>
+        </main>
+      )
+    }
   }
 }
 
