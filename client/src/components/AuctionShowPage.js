@@ -47,7 +47,7 @@ class AuctionShowPage extends React.Component {
         </main>
       )
     } else {
-      const max_bid = Math.max(...auction.bids.map(bid => bid.bid_price))
+      const max_bid = Math.max(0, ...auction.bids.map(bid => bid.bid_price))
 
       return (
         <main
